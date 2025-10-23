@@ -1,0 +1,477 @@
+{
+        "安徽电力关联交易协同": {
+             "登录页面": {
+                "单位下拉框": "#department",
+                "省公司页签": "text='省（市）公司'",
+                "公司名称": "role=link[name=安徽电力]",
+                "用户名输入框": "#username",
+                "密码输入框": "#password",
+                "登录按钮": "role=button[name=登录]"
+            },
+            "切换单位页面": {
+                "下拉框": "div[class~='dcc-header-unitree']",
+                "选择单位": "div[class='sub-item']:has-text('1600')"
+            },
+            "页面导航": {
+                "共享财务中心": "text=共享财务中心",
+                "会计核算报告": "div.card-item:has-text('会计核算报告')",
+                "关联交易监控" : "text=关联交易监控",
+                "卡片翻页按钮-右": "button.zt-scroll__arrow.zt-scroll__arrow-right",
+                "关联交易审核": "role=link[name=关联交易审核]",
+                "分页下拉框": "td:has-text('每页显示')+td:has-text('200')",
+                "选项2000": "div.dropDiv tr.listview-row:has-text('2000')"
+            }
+        },
+        "安徽电力关联交易协同-培训中心": {
+            "关联交易审核": {
+                "更多下拉": "div.pageTopQuery a:has-text('更多')",
+                "协同状态输入框":"tr.query_inner_zone td:has-text('协同状态：')+td",
+                "不需协同申请选项": "#select2-drop div:has-text('不需协同申请')",
+                "查询按钮": "role=button[name='查询']",
+                "列头-内部往来单位": "#dwdxmxTable td:has-text('内部往来单位'):visible",
+                "列头筛选按钮-内部往来单位": "#dwdxmxTable td:has-text('内部往来单位'):visible div.sortDiv",
+                "列头查询弹窗-关键字输入框": "input.searchInput[placeholder='输入关键字']",
+                "列头查询弹窗-行数":".treeListDiv>table.component_ui_listview_list_table>tbody>tr.listview-row:visible",
+                "列头查询弹窗-全选链接": "td.component_ui_listview_td span#all",
+                "列头查询弹窗-确定按钮": "table.button_table td.button_caption:has-text('确定')",
+                "不需协同批复按钮": "div#replyDiv button:has-text('不需协同批复')",
+                "同意按钮": "a#noNeedCoopReply:has-text('同意')",
+                "确定按钮": "role=button[name='确定']"
+
+            }
+        },
+        "安徽电力关联交易协同-自动清账": {
+            "关联交易审核": {
+                "更多下拉": "div.pageTopQuery a:has-text('更多')",
+                "协同状态输入框":"tr.query_inner_zone td:has-text('协同状态：')+td",
+                "不需协同申请选项": "#select2-drop div:has-text('不需协同申请')",
+                "查询按钮": "role=button[name='查询']",
+                "列头-分录摘要": "#dwdxmxTable td:has-text('分录摘要'):visible",
+                "列头筛选按钮-分录摘要": "#dwdxmxTable td:has-text('分录摘要'):visible div.sortDiv",
+                "列头查询弹窗-关键字输入框": "input.searchInput[placeholder='输入关键字']",
+                "列头查询弹窗-行数":".treeListDiv>table.component_ui_listview_list_table>tbody>tr.listview-row:visible",
+                "列头查询弹窗-全选链接": "td.component_ui_listview_td span#all",
+                "列头查询弹窗-确定按钮": "table.button_table td.button_caption:has-text('确定')",
+                "不需协同批复按钮": "div#replyDiv button:has-text('不需协同批复')",
+                "同意按钮": "a#noNeedCoopReply:has-text('同意')",
+                "确定按钮": "role=button[name='确定']"
+
+            }
+        },
+        "安徽电力关联交易协同-水电费": {
+            "关联交易审核": {
+                "更多下拉": "div.pageTopQuery a:has-text('更多')",
+                "协同状态输入框":"tr.query_inner_zone td:has-text('协同状态：')+td",
+                "不需协同申请选项": "#select2-drop div:has-text('不需协同申请')",
+                "查询按钮": "role=button[name='查询']",
+                "列头-科目": "#dwdxmxTable td:has-text('科目'):visible",
+                "列头筛选按钮-水电费": "#dwdxmxTable td:has-text('水电费'):visible div.sortDiv",
+                "列头查询弹窗-关键字输入框": "input.searchInput[placeholder='输入关键字']",
+                "列头查询弹窗-行数":".treeListDiv>table.component_ui_listview_list_table>tbody>tr.listview-row:visible",
+                "列头查询弹窗-全选链接": "td.component_ui_listview_td span#all",
+                "列头查询弹窗-确定按钮": "table.button_table td.button_caption:has-text('确定')",
+                "不需协同批复按钮": "div#replyDiv button:has-text('不需协同批复')",
+                "同意按钮": "a#noNeedCoopReply:has-text('同意')",
+                "确定按钮": "role=button[name='确定']"
+
+            }
+        },
+        "安徽电力工单": {
+            "登录页面": {
+                "账户输入框": "#username",
+                "密码输入框": "#password",
+                "登录按钮": "role=button[name='登录']"
+            },
+            "页面导航": {
+                "我的待办": "role=link[name='我的待办']"
+            },
+            "工单页面": {
+                "查询按钮": {
+                   "method": "get_by_role",
+                    "role": "button",
+                    "value": "查询"
+                }
+            }
+        },
+        "安徽往来台账查询": {
+             "登录页面": {
+                "单位下拉框": "#department",
+                "省公司页签": "text='省（市）公司'",
+                "公司名称": "role=link[name=安徽电力]",
+                "用户名输入框": "#username",
+                "密码输入框": "#password",
+                "登录按钮": "role=button[name=登录]"
+            },
+            "切换单位页面": {
+                "下拉框": "div[class~='dcc-header-unitree']",
+                "选择单位": "div[class='sub-item']:has-text('1600')"
+            },
+            "页面导航": {
+                "共享财务中心": "text=共享财务中心",
+                "会计核算报告": "div.card-item:has-text('会计核算报告')",
+                "往来清账" : "text=往来清账",
+                "更多": "div.zt-card__body div.zt-card-link-group a[title='更多']",
+                "往来台账查询": "div.zt-card__body div.zt-card-link-group a[title='往来台账查询']",
+                "分页下拉框": "td:has-text('每页显示')+td:has-text('200')",
+                "选项2000": "div.dropDiv tr.listview-row:has-text('2000')"
+            }
+        },
+        "安徽往来台账查询-查询导出": {
+            "查询面板" : {
+                "单位名称更多": "div[label='单位名称'] button:has(i.el-icon-more)",
+                "单位名称弹出框搜索条件": ".el-dialog__body .el-input__inner[placeholder='输入关键字，自动过滤']",
+                "单位名称弹出框确认按钮": "div.el-dialog__footer span.dialog-footer button.el-button--primary:has-text('确定')",
+                "状态": "label:has-text('已清') .el-radio__inner",
+                "核算科目输入框": "div[label='核算科目'] div.tl-select div.el-select div.el-select__tags div.el-input input[type='text']",
+                "核算科目更多": "div[label='核算科目'] button:has(i.el-icon-more)",
+                "核算科目日期": "div.el-date-editor.tl-date-picker input.el-input__inner",
+                "核算科目查询": "div.el-dialog__body div.el-form-item__content button.el-button--primary:has-text('查询')",
+                "核算科目弹出框关闭按钮": "button.el-dialog__headerbtn",
+                "核算科目弹出框搜索条件": ".tl-popentity__tree-search .el-input input.el-input__inner",
+                "核算科目弹出框确认按钮": "div.el-dialog__footer div.tl-popentity__footer button.el-button--primary:has-text('确定')",
+                "凭证开始日期": "input[placeholder='开始时间']",
+                "凭证结束日期": "input[placeholder='结束时间']",
+                "数据条数": "td#common_td:has-text('共0条')",
+                "重置按钮": "#rest",
+                "查询按钮": "#query"
+            },
+            "按钮集合": {
+                "导出": "button[name='exportBtn']",
+                "导出确认": ".tl-export__footer button.el-button--primary:has-text('确定')",
+                "导出管理": ".tl-export__footer .tl-export__footer-text button.el-button--text:has-text('导出管理')",
+                "台账导出结果数据行": "tr:has-text('往来台账查询')",
+                "导出成功标识": "i.el-icon-circle-check",
+                "下载": "button:has-text('下载')",
+                "清理": "button:has-text('清理')",
+                "导出管理关闭按钮": "xpath=//div[contains(@class, 'el-dialog__header') and .//span[text()='导出管理']] /ancestor::div[contains(@class, 'el-dialog')] //div[contains(@class, 'el-dialog__footer')] //button[contains(@class, 'el-button--primary') and .//span[text()='关闭']]",
+                "导出关闭": ".tl-export__footer button.el-button--default:has-text('取消')"
+            }
+        },
+        "安徽银企对账" : {
+            "登录页面": {
+                "单位下拉框": "#department",
+                "省公司页签": "text='省（市）公司'",
+                "公司名称": "role=link[name=安徽电力]",
+                "用户名输入框": "#username",
+                "密码输入框": "#password",
+                "登录按钮": "role=button[name=登录]"
+            },
+            "切换单位页面": {
+                "下拉框": "div[class~='dcc-header-unitree']",
+                "选择单位": "div[class='sub-item']:has-text('1600')"
+            },
+            "页面导航": {
+                "共享财务中心": "text=共享财务中心",
+                "资金收支管控": "div.card-item:has-text('资金收支管控')",
+                "银企对账首页" : "text=银企对账",
+                "银企对账": "xpath=//button[@name='pushBill' and contains(., '银企对账')]"
+            },
+            "查询面板及按钮" : {
+                "对账账号输入框": "#bacode",
+                "对账期间": "#checkDate",
+                "查询按钮": "#queryBtn",
+                "获取凭证数据按钮": "#hqpzBtn",
+                "同步数据开始时间": "#syncStartDate",
+                "同步数据结束时间": "#syncEndDate",
+                "同步数据弹窗确认按钮": "#syncConfimBtn"
+            }
+        },
+        "安徽银行对账单查询【手工采集】对账单" : {
+             "登录页面": {
+                "单位下拉框": "#department",
+                "省公司页签": "text='省（市）公司'",
+                "公司名称": "role=link[name=安徽电力]",
+                "用户名输入框": "#username",
+                "密码输入框": "#password",
+                "登录按钮": "role=button[name=登录]"
+            },
+            "切换单位页面": {
+                "下拉框": "div[class~='dcc-header-unitree']",
+                "选择单位": "div[class='sub-item']:has-text('1600')"
+            },
+            "页面导航": {
+                "共享财务中心": "text=共享财务中心",
+                "资金收支管控": "div.card-item:has-text('资金收支管控')",
+                "银企对账首页" : "text=银企对账",
+                "银行对账单查询": "div.zt-card__body div.zt-card-link-group a[title='银行对账单查询']"
+            },
+            "查询面板及按钮" : {
+                "手工采集按钮": "#collectBtn",
+                "采集账号": "//div[@id='collectBillsDilag']//td[@class='input_input_td']//textarea[@class='editTextInputer']",
+                "采集日期": "#collectDate",
+                "采集弹窗确认按钮": "#saveBtn"
+            }
+        },
+        "安徽电厂购电业票关联确认" : {
+            "登录页面": {
+                "单位下拉框": "#department",
+                "省公司页签": "text='省（市）公司'",
+                "公司名称": "role=link[name=安徽电力]",
+                "用户名输入框": "#username",
+                "密码输入框": "#password",
+                "登录按钮": "role=button[name=登录]"
+            },
+            "切换单位页面": {
+                "下拉框": "div[class~='dcc-header-unitree']",
+                "选择单位": "div[class='sub-item']:has-text('1600')"
+            },
+            "页面导航": {
+                "应用总览": {
+                    "method": "get_by_text",
+                    "value": "应用总览"
+                },
+                "价格管理" : {
+                    "method": "get_by_text",
+                    "value": "价格管理"
+                },
+                "省内购电结算": "div.card-item:has-text('省内购电结算')",
+                "电厂购电结算": "div.card-dialog:has-text('省内购电结算') li:has(div.two-title:has-text('电厂购电结算')) div.nav-text:has-text('正式结算')",
+                "业票关联确认": "div.zt-card:has(div.zt-card__title:has-text('业票关联确认'))",
+                "全量处理": "button:has-text('全量处理')"
+            },
+            "查询面板及按钮" : {
+                "开始电费年月": "#elStartMonth",
+                "结束电费年月": "#elEndMonth",
+                "开票日期开始时间": "#invStartDt",
+                "开票日期结束时间": "#invEndDt",
+                "发票号码" : "#invoiceNumber",
+                "发票代码" : "#invoiceCode",
+                "查询按钮": "#queryBtn",
+                "表格数据行标识": "#invAuditBody .row-main",
+                "数据总条数": "#totalCount",
+                "下一页": "#next",
+                "当前页码": ".audit_page_index_cell.active",
+                "发票信息表格": ".leftTab",
+                "结算数据表格": ".rightTab",
+                "行标识": "tr"
+            }
+        },
+        "安徽分布式业票关联确认" : {
+            "登录页面": {
+                "单位下拉框": "#department",
+                "省公司页签": "text='省（市）公司'",
+                "公司名称": "role=link[name=安徽电力]",
+                "用户名输入框": "#username",
+                "密码输入框": "#password",
+                "登录按钮": "role=button[name=登录]"
+            },
+            "切换单位页面": {
+                "下拉框": "div[class~='dcc-header-unitree']",
+                "选择单位": "div[class='sub-item']:has-text('1600')"
+            },
+            "页面导航": {
+                "应用总览": {
+                    "method": "get_by_text",
+                    "value": "应用总览"
+                },
+                "价格管理" : {
+                    "method": "get_by_text",
+                    "value": "价格管理"
+                },
+                "可再生能源补贴结算": "div.card-item:has-text('可再生能源补贴结算')",
+                "分布式电源结算": "div.card-dialog:has-text('可再生能源补贴结算') li:has(div.two-title:has-text('分布式电源结算')) div.nav-text:has-text('正式结算')",
+                "业票关联确认": "div.zt-card:has(div.zt-card__title:has-text('业票关联确认'))",
+                "全量处理": "button:has-text('全量处理')"
+            },
+            "查询面板及按钮" : {
+                "查询条件更多": {
+                    "method": "get_by_text",
+                    "value": "更多"
+                },
+                "开始电费年月": "#elecSdate",
+                "结束电费年月": "#elecEdate",
+                "开票日期开始时间": "#sdate",
+                "开票日期结束时间": "#edate",
+                "接收日期开始时间": "#startCreTime",
+                "接收日期结束时间": "#endCreTime",
+                "发票号码" : "#fphm",
+                "发票代码" : "#fpdm",
+                "项目编号": "#xmbh",
+                "所属供电所": "#ssgds",
+                "查询按钮": "#queryBtn",
+                "表格数据行标识": "#tbody .row-main",
+                "数据总条数": "#totalCount",
+                "下一页": "#next",
+                "当前页码": ".audit_page_index_cell.active",
+                "发票信息表格": ".leftTab",
+                "结算数据表格": ".rightTab",
+                "行标识": "tr",
+                "审核通过按钮" : "#auditBtn",
+                "回退营销按钮": "#backBtn"
+
+            }
+        },
+        "安徽电力资金协同审核": {
+            "登录页面": {
+                "单位下拉框": "#department",
+                "省公司页签": "text='省（市）公司'",
+                "公司名称": "role=link[name=安徽电力]",
+                "用户名输入框": "#username",
+                "密码输入框": "#password",
+                "登录按钮": "role=button[name=登录]"
+            },
+            "切换单位页面": {
+                "下拉框": "div[class~='dcc-header-unitree']",
+                "选择单位": "div[class='sub-item']:has-text('1600')"
+            },
+            "页面导航": {
+                "共享财务中心": "text=共享财务中心",
+                "会计核算报告": "div.card-item:has-text('会计核算报告')",
+                "关联交易监控" : "text=关联交易监控",
+                "卡片翻页按钮-右": "button.zt-scroll__arrow.zt-scroll__arrow-right",
+                "资金协同审核": "role=link[name=资金协同审核]",
+                "分页下拉框": "td:has-text('每页显示')+td:has-text('200')",
+                "选项2000": "div.dropDiv tr.listview-row:has-text('2000')"
+            },
+            "资金协同审核": {
+                "筛选框": "#sideContainer",
+                "筛选条件": "#filterCondition",
+                "我方单位下拉框": "#s2id_autogen11",
+                "我方单位更多": "#addMore",
+                "我方单位全选": "div.modal-dialog:has-text('我方单位选择') #tree_entity .jstree-anchor .jstree-checkbox",
+                "我方单位确认": "div.colorModal:has(h4:has-text('我方单位选择')) .modal-footer button.btn-primary",
+                "对方单位下拉框": "#s2id_autogen12",
+                "筛选条件更多": "text='更多条件'",
+                "摘要": "#zy1",
+                "筛选条件确认": "#mainConfirmBtn",
+                "表格数据全选": "//table[@id='qzzTableWFUp']//tr[2]//td[contains(@class,'treeListTitle')]//div[contains(@class,'qzz_unchecked')]",
+                "不需关联批复": "#approveIndependenceBtn",
+                "同意按钮": "#approveIndependence"
+            }
+        },
+
+        "陕西监控": {
+            "登录页面": {
+                "请选择机构": {
+                    "method": "get_by_role",
+                    "role": "textbox",
+                    "value": "请选择机构"
+                },
+                "机构名称": {
+                    "method": "get_by_text",
+                    "value": "中国西电电气股份有限公司"
+                },
+                "用户名输入框": {
+                    "method": "get_by_role",
+                    "role": "textbox",
+                    "value": "请输入账号"
+                },
+                "密码输入框": {
+                    "method": "get_by_role",
+                    "role": "textbox",
+                    "value": "请输入密码"
+                },
+                "请选择单位": {
+                    "method": "get_by_text",
+                    "value": "请选择单位"
+                },
+                "单位搜索框": {
+                    "method": "get_by_role",
+                    "role": "textbox",
+                    "value": "输入关键字，自动搜索"
+                },
+                "单位名称": {
+                    "method": "get_by_text",
+                    "value": "中国西电电气股份有限公司（本部）"
+                },
+                "登录按钮": {
+                    "method": "get_by_role",
+                    "role": "button",
+                    "value": "登录"
+                }
+            },
+            "页面导航": {
+                "智慧应用中心": {
+                    "method": "get_by_text",
+                    "value": "智慧应用中心"
+                },
+                "共享服务中心": {
+                    "method": "get_by_text",
+                    "value": "共享服务中心"
+                },
+                "运维看板": "a:has-text('运维看板')"
+            },
+            "运维看板": {
+                "任务异常数": {
+                    "method": "get_by_text",
+                    "value": "任务异常数"
+                },
+                "系统异常-tab": {
+                    "method": "get_by_text",
+                    "value": "系统异常"
+                },
+                "系统异常-勾选全选": "tr:has-text('序号') >> td div.checkBoxDiv",
+                "系统异常-重新执行": {
+                    "method": "get_by_role",
+                    "role": "button",
+                    "value": "重新执行"
+                },
+                "环节异常-tab": {
+                    "method": "get_by_text",
+                    "value": "环节异常"
+                },
+                "环节异常-勾选全选": "tr:has-text('序号') >> td div.checkBoxDiv",
+                "环节异常-强制同步": {
+                    "method": "get_by_role",
+                    "role": "button",
+                    "value": "强制同步"
+                }
+            }
+        },
+        "银行账户补采": {
+            "登录页面": {
+                "单位下拉框": "#department",
+                "公司总部": "role=link[name=公司总部]",
+                "用户名输入框": "#username",
+                "密码输入框": "#password",
+                "登录按钮": "role=button[name=登录]"
+            },
+            "切换单位页面": {
+                "下拉框": "div[class~='dcc-header-unitree']",
+                "选择单位": "div[class='sub-item']:has-text('0600')"
+            },
+            "菜单页面": {
+                "共享财务中心": "text='共享财务中心'",
+                "资金收支管控": ".card-item:has-text('资金收支管控')",
+                "账户办理开户": "text='账户办理-开户'"
+            },
+            "补采页面": {
+                "补采按钮": "role=button[name=银行账户手工补采]",
+                "选择账号按钮": "#c_accBtn",
+                "开始日期": "#c_startdate",
+                "结束日期": "#c_enddate",
+                "账号输入框": "#bacode_model",
+                "查询按钮": "#queryData_model",
+                "查询账号确定按钮": "#continueBtn_model",
+                "查询账号取消按钮": "#cancelBtn_model",
+                "补采确定按钮": "#handCollectSaveBtn",
+                "回单采集Radio": "#c_acttype_2",
+                "交易余额采集Radio": "#c_acttype_1",
+                "提交弹窗_关闭按钮": "button:has-text('关闭')"
+            }
+        },
+        "影刀商城": {
+            "登录页面": {
+                "账户输入框": "role=textbox[name='账户: admin']",
+                "密码输入框": "role=textbox[name='密码']",
+                "登录按钮": "role=button[name='登 录']"
+            },
+            "订单页面": {
+                "工作台": {
+                    "method": "get_by_text",
+                    "value": "工作台"
+                },
+                "订单菜单": "role=link[name='订单管理']",
+                "商品名称-输入框": "role=textbox[name='商品名称']",
+                "查询按钮": "role=button[name='查 询']",
+                "下一页按钮": ".ant-pagination-next:not(.ant-pagination-disabled)",
+                "商品表格": "table:has-text('订单编号')",
+                "表格行": "tr:has(td)",
+                "表格单元格": "td",
+                "确认发货": "a:has-text('确认发货')",
+                "商品表格_确认发货弹窗": ".ant-popover-inner",
+                "商品表格_确认发货弹窗_确定按钮": "button:has-text('确 定')"
+            }
+        }
+
+}
