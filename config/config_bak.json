@@ -1,0 +1,204 @@
+{
+    "app": {},
+    "menu": {
+        "robots": [
+            {
+                "code": "ahdl_related_party_trans_pxzx",
+                "name": "关联交易审核（培训中心）",
+                "icon": "src/resources/robot.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_related_party_trans.py",
+                "doc": "docs/安徽关联交易审核（培训中心）.html",
+                "file_input": false,
+                "description": "关联交易审核（培训中心）"
+            },
+            {
+                "code": "ahdl_related_party_trans_zdqz",
+                "name": "关联交易审核（自动清账）",
+                "icon": "src/resources/robot.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_related_party_trans_zdqz.py",
+                "doc": "docs/安徽关联交易审核（自动清账）.html",
+                "file_input": false,
+                "description": "关联交易审核（自动清账）"
+            },
+            {
+                "code": "ahdl_related_party_trans_grkc",
+                "name": "关联交易审核（个人扣除项目）",
+                "icon": "src/resources/robot.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_related_party_trans_grkc.py",
+                "doc": "docs/安徽关联交易审核（个人扣除项）.html",
+                "file_input": false,
+                "description": "关联交易审核（个人扣除项目）"
+            },
+            {
+                "code": "ahdl_related_party_trans_sdf",
+                "name": "关联交易审核（水电费）",
+                "icon": "src/resources/robot.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_related_party_trans_sdf.py",
+                "doc": "docs/安徽关联交易审核（水电费）.html",
+                "file_input": false,
+                "description": "关联交易审核（水电费）"
+            },
+            {
+                "code": "ahdl_workorder",
+                "name": "安徽电力工单",
+                "icon": "src/resources/robot.svg",
+                "method": "main",
+                "file_path": "src/robots/ahdl_workorder.py",
+                "doc": "docs/安徽工单采集.html",
+                "file_input": false,
+                "description": "安徽电力工单Robot"
+            },
+            {
+                "code": "ah_account_ledger_query",
+                "name": "安徽往来台账查询",
+                "icon": "src/resources/sync.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_account_ledger_query.py",
+                "doc": "docs/安徽往来台账查询.html",
+                "file_input": true,
+                "description": "安徽往来台账查询导出数据"
+            },
+            {
+                "code": "ah_bank_reconciliation",
+                "name": "安徽银企对账",
+                "icon": "src/resources/sync.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_bank_reconciliation.py",
+                "doc": "docs/安徽银企对账.html",
+                "file_input": true,
+                "description": "安徽银企对账"
+            },
+            {
+                "code": "ah_manual_bank_statement_inquiry",
+                "name": "安徽银行对账单查询【手工采集】对账单",
+                "icon": "src/resources/sync.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_manual_bank_statement_inquiry.py",
+                "doc": "docs/安徽银行对账单查询【手工采集】对账单.html",
+                "file_input": true,
+                "description": "安徽银行对账单查询【手工采集】对账单"
+            },
+            {
+                "code": "ah_electric_invcheck_dcgd",
+                "name": "业票关联确认（电厂购电）",
+                "icon": "src/resources/sync.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_electric_invcheck_dcgd.py",
+                "doc": "docs/安徽电厂购电业票关联确认.html",
+                "file_input": true,
+                "description": "业票关联确认（电厂购电）"
+            },
+
+            {
+                "code": "ah_electric_invcheck_fbsdy",
+                "name": "业票关联确认（分布式电源结算）",
+                "icon": "src/resources/sync.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_electric_invcheck_fbsdy.py",
+                "doc": "docs/安徽分布式电源结算业票关联确认.html",
+                "file_input": true,
+                "description": "业票关联确认（分布式电源结算）"
+            },
+            {
+                "code": "ah_fund_collaboration_approval_pxzx",
+                "name": "资金协同审核（培训中心）",
+                "icon": "src/resources/robot.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_fund_collaboration_approval_pxzx.py",
+                "doc": "docs/安徽资金协同审核（培训中心）.html",
+                "file_input": true,
+                "description": "资金协同审核（培训中心）"
+            },
+            {
+                "code": "ah_fund_collaboration_approval_df",
+                "name": "资金协同审核（电费）",
+                "icon": "src/resources/robot.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_fund_collaboration_approval_df.py",
+                "doc": "docs/安徽资金协同审核（电费）.html",
+                "file_input": true,
+                "description": "资金协同审核（电费）"
+            },
+              {
+                "code": "ah_fund_collaboration_approval_sbgjj",
+                "name": "资金协同审核（社保公积金）",
+                "icon": "src/resources/robot.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_fund_collaboration_approval_sbgjj.py",
+                "doc": "docs/安徽资金协同审核（社保公积金）.html",
+                "file_input": true,
+                "description": "资金协同审核（社保公积金）"
+            },
+            {
+                "code": "ah_ap_ar_acc_balance_rec_export",
+                "name": "安徽期初往来数据与账务余额核对导出",
+                "icon": "src/resources/robot.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_ap_ar_acc_balance_rec_export.py",
+                "doc": "docs/安徽期初往来数据与账务余额核对导出.html",
+                "file_input": true,
+                "description": "安徽期初往来数据与账务余额核对导出"
+          },
+          {
+            "code": "ah_fd_schd_data_upd",
+            "name": "安徽资金排程数据更新",
+            "icon": "src/resources/robot.svg",
+            "method": "main",
+            "file_path": "src/robots/ah_fd_schd_data_upd.py",
+            "doc": "docs/安徽资金排程数据更新.html",
+            "file_input": true,
+            "description": "安徽资金排程数据更新"
+          },
+          {
+            "code": "ah_multi_dim_cost_collection_allocation",
+            "name": "安徽多维成本归集分摊",
+            "icon": "src/resources/robot.svg",
+            "method": "main",
+            "file_path": "src/robots/ah_multi_dim_cost_collection_allocation.py",
+            "doc": "docs/安徽多维成本归集分摊.html",
+            "file_input": true,
+            "description": "安徽多维成本归集分摊"
+          },
+            {
+                "code": "toolkit",
+                "name": "辅助工具",
+                "icon": "src/resources/robot.svg",
+                "method": "settings_main",
+                "doc": "",
+                "file_input": false,
+                "description": "RPA辅助工具和设置"
+            }
+        ]
+    },
+    "browser": {
+        "headless": true,
+        "args": [],
+        "slow_mo": 0,
+        "timeout": 30000
+    },
+    "context": {
+        "no_viewport": false,
+        "viewport": {
+            "width": 1200,
+            "height": 800
+        },
+        "record_video_dir": "videos",
+        "record_video_size": {
+            "width": 1200,
+            "height": 800
+        }
+    },
+    "page": {},
+    "timeout": {
+        "default_navigation_timeout": 30000,
+        "default_timeout": 10000
+    },
+    "screenshot": {
+        "enabled": true,
+        "save_dir": "screenshots"
+    }
+}

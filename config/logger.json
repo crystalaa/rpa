@@ -1,0 +1,13 @@
+{
+"log_level": "DEBUG",
+"file_level": "DEBUG",
+"file_formatter": "[%(asctime)s] %(levelname)s - %(filename)s:%(lineno)d: %(message)s",
+"console_level": "DEBUG",
+"console_formatter": "[%(asctime)s] %(levelname)s - %(filename)s:%(lineno)d: %(message)s",
+"qt_level": "INFO",
+"qt_formatter": "%(asctime)s - %(message)s",
+"qt_debug": false,
+"stack_info": true,
+"exc_info": true,
+"log_retention_days": 30
+}

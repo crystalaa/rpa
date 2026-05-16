@@ -1,0 +1,4 @@
+[console_scripts]
+rpa-cli = rpa_framework.main_cli:main
+rpa-framework = rpa_framework.scaffold:main
+rpa-gui = rpa_framework.main:main

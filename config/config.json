@@ -1,0 +1,64 @@
+{
+    "app": {},
+    "menu": {
+        "robots": [
+              {
+                "code": "ah_multi_vouch_task",
+                "name": "安徽多维凭证宽表增量派生任务",
+                "icon": "src/resources/sync.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_multi_vouch_task.py",
+                "doc": "docs/安徽多维凭证宽表增量派生任务.html",
+                "file_input": true,
+                "description": "安徽多维凭证宽表增量派生任务"
+            },
+            {
+                "code": "ah_rd_vouch_task",
+                "name": "安徽研发支出人工成本切换凭证导入任务",
+                "icon": "src/resources/sync.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_rd_vouch_task.py",
+                "doc": "docs/安徽研发支出人工成本切换凭证导入任务.html",
+                "file_input": true,
+                "description": "安徽研发支出人工成本切换凭证导入任务"
+            },
+
+            {
+                "code": "toolkit",
+                "name": "辅助工具",
+                "icon": "src/resources/robot.svg",
+                "method": "settings_main",
+                "doc": "",
+                "file_input": false,
+                "description": "RPA辅助工具和设置"
+            }
+        ]
+    },
+    "browser": {
+        "headless": true,
+        "args": [],
+        "slow_mo": 0,
+        "timeout": 30000
+    },
+    "context": {
+        "no_viewport": false,
+        "viewport": {
+            "width": 1200,
+            "height": 800
+        },
+        "record_video_dir": "videos",
+        "record_video_size": {
+            "width": 1200,
+            "height": 800
+        }
+    },
+    "page": {},
+    "timeout": {
+        "default_navigation_timeout": 30000,
+        "default_timeout": 10000
+    },
+    "screenshot": {
+        "enabled": true,
+        "save_dir": "screenshots"
+    }
+}

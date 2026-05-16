@@ -1,0 +1,95 @@
+{
+    "app": {},
+    "menu": {
+        "robots": [
+
+
+            {
+                "code": "ah_bank_reconciliation",
+                "name": "陕西银企对账",
+                "icon": "src/resources/sync.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_bank_reconciliation.py",
+                "doc": "docs/陕西银企对账.html",
+                "file_input": true,
+                "description": "陕西银企对账"
+            },
+            {
+                "code": "ah_manual_bank_statement_inquiry",
+                "name": "陕西银行对账单查询【手工采集】对账单",
+                "icon": "src/resources/sync.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_manual_bank_statement_inquiry.py",
+                "doc": "docs/陕西银行对账单查询【手工采集】对账单.html",
+                "file_input": true,
+                "description": "陕西银行对账单查询【手工采集】对账单"
+            },
+            {
+                "code": "ah_fund_collaboration_approval_pxzx",
+                "name": "资金协同审核（培训中心）",
+                "icon": "src/resources/robot.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_fund_collaboration_approval_pxzx.py",
+                "doc": "docs/陕西资金协同审核（培训中心）.html",
+                "file_input": true,
+                "description": "资金协同审核（培训中心）"
+            },
+            {
+                "code": "ah_fund_collaboration_approval_df",
+                "name": "资金协同审核（电费）",
+                "icon": "src/resources/robot.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_fund_collaboration_approval_df.py",
+                "doc": "docs/陕西资金协同审核（电费）.html",
+                "file_input": true,
+                "description": "资金协同审核（电费）"
+            },
+              {
+                "code": "ah_fund_collaboration_approval_sbgjj",
+                "name": "资金协同审核（社保公积金）",
+                "icon": "src/resources/robot.svg",
+                "method": "main",
+                "file_path": "src/robots/ah_fund_collaboration_approval_sbgjj.py",
+                "doc": "docs/陕西资金协同审核（社保公积金）.html",
+                "file_input": true,
+                "description": "资金协同审核（社保公积金）"
+            },
+            {
+                "code": "toolkit",
+                "name": "辅助工具",
+                "icon": "src/resources/robot.svg",
+                "method": "settings_main",
+                "doc": "",
+                "file_input": false,
+                "description": "RPA辅助工具和设置"
+            }
+        ]
+    },
+    "browser": {
+        "headless": true,
+        "args": [],
+        "slow_mo": 0,
+        "timeout": 30000
+    },
+    "context": {
+        "no_viewport": false,
+        "viewport": {
+            "width": 1200,
+            "height": 800
+        },
+        "record_video_dir": "videos",
+        "record_video_size": {
+            "width": 1200,
+            "height": 800
+        }
+    },
+    "page": {},
+    "timeout": {
+        "default_navigation_timeout": 30000,
+        "default_timeout": 10000
+    },
+    "screenshot": {
+        "enabled": true,
+        "save_dir": "screenshots"
+    }
+}
