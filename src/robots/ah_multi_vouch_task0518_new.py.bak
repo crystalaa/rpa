@@ -1,8 +1,6 @@
 from datetime import datetime
 from typing import Dict, Any
 
-import requests
-
 from rpa_framework.utils.log import logger
 from rpa_framework.utils.encryptor import Encryptor
 from rpa_framework.utils.excel_utils import ExcelUtils
@@ -181,7 +179,7 @@ class ProcessRobots:
                     return ''.join(char for char in json_str if ord(char) >= 32 or char in '\n\r\t')
 
                 response_dx_text = clean_json_string(response_dx_text)
-                response_dx_json = json.loads(response_dx_text, strict=False)
+                response_dx_json = json.loads(response_dx_text)
                 # logger.info(f"查询当前共享项目返回值response_dx_json：{response_dx_json}")
 
                 gldx_list = response_dx_json.get('data')
@@ -205,7 +203,7 @@ class ProcessRobots:
                         self.base_pw.locate_and_click("修改载体维度-查询按钮", sleep=1000)
                     if response_info1.is_done():
                         res_result_text = response_info1.value.text()
-                        response_json = json.loads(res_result_text, strict=False)
+                        response_json = json.loads(res_result_text)
                         response_data = response_json.get('data').get('datas')
                         logger.info(f"当前查询结果数据：{response_data}")
                         response_count = response_json.get('data').get('total')
@@ -215,11 +213,130 @@ class ProcessRobots:
                         first_day_str= first_day.strftime("%Y-%m-%d")
                         if response_count != 0:
                             dxmc = response_data[0].get('dxmc')
-                            # ====== 新方案：通过API直接修改，绕过UI表格无法点击问题 ======
-                            # 直接使用listDimValRel接口已返回的response_data，无需再点击表格行
-                            logger.info(f"检测到 {response_count} 条维度数据，采用API直接修改方式")
-                            self._modify_dimensions_via_api(response_data, modify_time_str)
-                            self.base_pw.locate_and_click("修改载体维度-查询按钮", sleep=1000)
+                            for i in range(response_count):
+                                try:
+                                    close_loc = self.base_pw.page.get_by_role("button", name="关闭")
+                                    if close_loc.count() > 0:
+                                        close_loc.click()
+                                    row_loc_count = self.base_pw.page.get_by_text(str(i + 1), exact=True).count()
+                                    logger.warning(str(i + 1))
+                                    if row_loc_count == 1:
+                                        self.base_pw.page.get_by_text(str(i + 1), exact=True).click()
+                                        logger.warning("111")
+                                    elif row_loc_count > 1:
+                                        self.base_pw.page.get_by_text(str(i + 1), exact=True).first.click()
+                                        logger.warning("222")
+                                    current_data = response_data[i]
+                                    wd_type = current_data.get('wd_type')
+                                    etime = current_data.get('etime')
+                                    stime = current_data.get('stime')
+                                    if str(wd_type) == "0" and etime == "3000-01-01":
+                                        # 将同类型的载体属性停用时间为3000-1-1的这条数据，开始时间修改为当月1日
+                                        if stime <= modify_time_str:
+                                            logger.warning("场景1，当前数据开始时间早于要修改的时间，不做处理")
+                                            # close_loc = self.base_pw.page.get_by_role("button", name="关闭")
+                                            # if close_loc.count() > 0:
+                                            #     close_loc.click()
+                                            continue
+
+                                        self.base_pw.page.get_by_role("button", name="修改时间").click()
+                                        self.base_pw.page.locator("#ydate").get_by_text(stime).click()
+                                        self.base_pw.page.locator("#ydate").get_by_role("textbox").fill(modify_time_str)
+                                        self.base_pw.page.locator("#saveTime").click()
+                                        self.base_pw.page.wait_for_load_state("networkidle")
+                                        close_loc = self.base_pw.page.get_by_role("button", name="关闭")
+                                        close_loc.click()
+                                    elif str(wd_type) == "0" and etime != "3000-01-01":
+                                        # 将同类型的载体属性停用时间非3000-1-1的这条数据，结束时间修改为当月1日
+                                        self.base_pw.page.get_by_role("button", name="修改时间").click()
+                                        self.base_pw.page.locator("#endDate").get_by_text(etime).click()
+                                        self.base_pw.page.get_by_role("row", name=etime, exact=True).locator("div").nth(
+                                            2).click()
+                                        self.base_pw.page.locator("#endDate").get_by_role("textbox").fill(
+                                            modify_time_str)
+                                        self.base_pw.page.locator("#saveTime").click()
+                                        self.base_pw.page.wait_for_load_state("networkidle")
+                                        close_loc = self.base_pw.page.get_by_role("button", name="关闭")
+                                        close_loc.click()
+                                    elif str(wd_type) == "1" and etime == "3000-01-01":
+                                        # 将不存在多条同类型的载体属性的，停用时间为3000 - 1 - 1 的这条数据，开始时间修改为当月1日
+                                        if stime <= modify_time_str:
+                                            logger.warning("场景3，当前数据开始时间早于要修改的时间，不做处理")
+                                            # close_loc = self.base_pw.page.get_by_role("button", name="关闭")
+                                            # if close_loc.count() > 0:
+                                            #     close_loc.click()
+                                            continue
+                                        self.base_pw.page.get_by_role("button", name="修改时间").click()
+                                        self.base_pw.page.locator("#ydate").get_by_text(stime).click()
+                                        self.base_pw.page.locator("#ydate").get_by_role("textbox").fill(modify_time_str)
+                                        self.base_pw.page.locator("#saveTime").click()
+                                        self.base_pw.page.wait_for_load_state("networkidle")
+                                        close_loc = self.base_pw.page.get_by_role("button", name="关闭")
+                                        close_loc.click()
+                                    else:
+                                        continue
+                                except Exception as e:
+                                    logger.warning("使用playwright locator触发选择失败，，")
+                                    row_num = i + 1
+                                    row_num_str = str(row_num)
+                                    self.click_grid_cell("WdRelationMxQueryGrid", i, "dxmc")
+                                    current_data = {}
+                                    current_data = self.base_pw.page.evaluate(
+                                        """         () => $("#WdRelationMxQueryGrid").qzzquerygrid(true).getSelectedRowData()     """)
+
+                                    logger.info(f"当前查询表格选中数据，第{row_num_str}行：：{current_data}")
+
+                                    # 1业务分类不同类型， 0管理对象同类型
+                                    wd_type = current_data.get('wd_type')
+                                    etime = current_data.get('etime')
+                                    stime = current_data.get('stime')
+                                    if str(wd_type) == "0" and etime == "3000-01-01":
+                                        # 将同类型的载体属性停用时间为3000-1-1的这条数据，开始时间修改为当月1日
+                                        if stime <= modify_time_str:
+                                            logger.warning("场景1，当前数据开始时间早于要修改的时间，不做处理")
+                                            # close_loc = self.base_pw.page.get_by_role("button", name="关闭")
+                                            # if close_loc.count() > 0:
+                                            #     close_loc.click()
+                                            continue
+
+                                        self.base_pw.page.get_by_role("button", name="修改时间").click()
+                                        self.base_pw.page.locator("#ydate").get_by_text(stime).click()
+                                        self.base_pw.page.locator("#ydate").get_by_role("textbox").fill(modify_time_str)
+                                        self.base_pw.page.locator("#saveTime").click()
+                                        self.base_pw.page.wait_for_load_state("networkidle")
+                                        close_loc = self.base_pw.page.get_by_role("button", name="关闭")
+                                        close_loc.click()
+                                    elif str(wd_type) == "0" and etime != "3000-01-01":
+                                        # 将同类型的载体属性停用时间非3000-1-1的这条数据，结束时间修改为当月1日
+                                        self.base_pw.page.get_by_role("button", name="修改时间").click()
+                                        self.base_pw.page.locator("#endDate").get_by_text(etime).click()
+                                        self.base_pw.page.get_by_role("row", name=etime, exact=True).locator("div").nth(
+                                            2).click()
+                                        self.base_pw.page.locator("#endDate").get_by_role("textbox").fill(
+                                            modify_time_str)
+                                        self.base_pw.page.locator("#saveTime").click()
+                                        self.base_pw.page.wait_for_load_state("networkidle")
+                                        close_loc = self.base_pw.page.get_by_role("button", name="关闭")
+                                        close_loc.click()
+                                    elif str(wd_type) == "1" and etime == "3000-01-01":
+                                        # 将不存在多条同类型的载体属性的，停用时间为3000 - 1 - 1 的这条数据，开始时间修改为当月1日
+                                        if stime <= modify_time_str:
+                                            logger.warning("场景3，当前数据开始时间早于要修改的时间，不做处理")
+                                            # close_loc = self.base_pw.page.get_by_role("button", name="关闭")
+                                            # if close_loc.count() > 0:
+                                            #     close_loc.click()
+                                            continue
+                                        self.base_pw.page.get_by_role("button", name="修改时间").click()
+                                        self.base_pw.page.locator("#ydate").get_by_text(stime).click()
+                                        self.base_pw.page.locator("#ydate").get_by_role("textbox").fill(modify_time_str)
+                                        self.base_pw.page.locator("#saveTime").click()
+                                        self.base_pw.page.wait_for_load_state("networkidle")
+                                        close_loc = self.base_pw.page.get_by_role("button", name="关闭")
+                                        close_loc.click()
+                                    else:
+                                        continue
+
+                            logger.info(f"当前编码{project_code}第{i + 1}条记录修改时间已完成")
                             logger.info("当前编码所有数据已处理完，开始清除查询条件项目名称")
                             self.base_pw.page.get_by_role("cell", name=dxmc).get_by_role("link").click()
                         else:
@@ -524,297 +641,6 @@ class ProcessRobots:
         except Exception as e:
             logger.error(f"点击单元格异常: {str(e)}")
             return False
-
-    def _js_modify_time(self, modify_params: dict) -> dict:
-        """在浏览器页面内通过JS调用修改时间接口
-
-        完整复制前端JS代码到F12执行，只替换参数变量值，不改动任何JS逻辑。
-        前端代码使用require加载依赖，通过acUtils.doPost发送请求，自动携带完整认证信息。
-
-        Args:
-            modify_params: 修改时间入参，直接对应 acUtils.doPost 的 modifyParams 参数：
-                {
-                    "objectTypeId": "2021",
-                    "objectItemId": 322545648,
-                    "dimensionId": 20103691,
-                    "dimension": "1156",
-                    "dimensionType": 1,
-                    "startTime": "2025-12-01",
-                    "endTime": "2026-05-26",
-                    "beforeStartTime": "2025-12-01",
-                    "beforeEndTime": "2026-05-25",
-                    "confirm": false,
-                }
-
-        Returns:
-            dict: {"success": bool, "code": str, "message": str}
-        """
-        js_code = f"""
-        (function() {{
-            return new Promise(function(resolve) {{
-                var modifyParams = {json.dumps(modify_params, ensure_ascii=False)};
-
-                // ====== 以下为前端完整JS代码，不做任何改动 ======
-                require([
-                    'jquery', 'account.app', 'account.base', 'account.query.init', 'account.common.utils', 'ecp.utils', 'ecp.osgi.service', 'select2',
-                    'i18n!../dim/nls/wdrelationmxquery.js', "i18n!/assets/components/account-extensionweb/common/nls/account.common3.0.js", 'ecp.component.dialog', 'ecp.component.loading', 'ecp.export3.0', 'portalUtil','ecp.component.progress', 'qzz.grid', 'account.dimPopSelector', 'ecp.component.import3.0'
-                ], function ($, app, accountBase, accountInit, acUtils, utils, ecp, select2, $curLocaleNls, $curComNls, dialogUtil, PageLoading, ecpExport, portalUtil, ProgressBar) {{
-                    'use strict';
-                    App.init();
-                    var CONST = {{
-                        WDRELMXQUERYCONTROLLER: "/member/gris/mapp/account/query/accDimValRelQuery",
-                        WDRELMXCONTROLLER: "/member/gris/mapp/account/service/accDimValRel"
-                    }};
-
-                    /**
-                     * 定义全局控制器
-                     */
-                    var controller = accountBase.Class(accountInit, {{
-                        /**
-                         * 初始化页面入口
-                         */
-                        init: function () {{
-                            var that = this;
-                            that.saveStime();
-                        }},
-
-                        /**
-                         *保存数据的开始时间。
-                         */
-                        saveStime: function () {{
-                            var uri = "modifyTime";
-                            acUtils.doPostAsync(CONST.WDRELMXCONTROLLER, uri, modifyParams, function (resp) {{
-                                resolve(resp);
-                            }});
-                        }},
-                    }});
-
-                    //实例化控制器
-                    new controller();
-                }});
-            }});
-        }})()
-        """
-        result = self.base_pw.page.evaluate(js_code)
-        return result
-
-    def _get_api_context(self):
-        """从浏览器上下文中提取cookies和headers，构建API调用会话
-
-        Returns:
-            tuple: (requests.Session, base_url)  Session已携带cookies和通用headers
-        """
-        # 从浏览器context提取所有cookies
-        browser_cookies = self.base_pw.context.cookies()
-
-        # 构建requests Session
-        session = requests.Session()
-        for cookie in browser_cookies:
-            session.cookies.set(
-                cookie['name'],
-                cookie['value'],
-                domain=cookie.get('domain', ''),
-                path=cookie.get('path', '/')
-            )
-
-        # 从当前页面URL提取基础地址
-        current_url = self.base_pw.page.url
-        parsed = urlparse(current_url)
-        base_url = f"{parsed.scheme}://{parsed.netloc}"
-
-        # 获取浏览器User-Agent
-        user_agent = self.base_pw.page.evaluate('navigator.userAgent')
-
-        # 设置通用请求头
-        session.headers.update({
-            'Origin': base_url,
-            'Referer': current_url,
-            'X-Requested-With': 'XMLHttpRequest',
-            'User-Agent': user_agent,
-            'Content-Type': 'application/json',
-        })
-
-        logger.info(f"已从浏览器提取 {len(browser_cookies)} 个Cookie，API基础地址: {base_url}")
-        return session, base_url
-
-    def _capture_save_request(self):
-        """捕获保存接口的请求详情（URL、参数、headers）
-
-        使用方式：在页面上手动操作第一行数据（修改时间→保存），
-        此方法会拦截并记录保存请求的完整信息，用于确定API地址和参数格式。
-        """
-        captured = []
-
-        def on_request(request):
-            url = request.url
-            if any(kw in url for kw in ['save', 'update', 'modify', 'edit', 'Time', 'wdRel', 'dimVal']):
-                captured.append({
-                    'url': url,
-                    'method': request.method,
-                    'headers': dict(request.headers),
-                    'post_data': request.post_data,
-                })
-
-        self.base_pw.page.on("request", on_request)
-        logger.info("已启动请求拦截器，请手动操作页面完成一次「修改时间→保存」操作...")
-        self.base_pw.page.pause()
-        self.base_pw.page.remove_listener("request", on_request)
-
-        if captured:
-            for req in captured:
-                logger.info(f"捕获到请求: {req['method']} {req['url']}")
-                logger.info(f"  Headers: {json.dumps(req['headers'], ensure_ascii=False, indent=2)}")
-                logger.info(f"  Body: {req['post_data']}")
-        else:
-            logger.warning("未捕获到任何保存请求")
-
-        return captured
-
-    def _modify_dimensions_via_api(self, response_data, modify_time):
-        """通过API直接修改载体维度时间，绕过UI表格无法点击问题
-
-        直接使用listDimValRel接口返回的数据，判断每行是否需要修改，
-        然后调用保存接口完成修改，无需在UI上点击表格行。
-
-        Args:
-            response_data: listDimValRel接口返回的datas数组
-            modify_time: 修改的目标时间 (YYYY-MM-DD格式)
-
-        Returns:
-            bool: 是否存在成功的修改操作
-        """
-        # session, base_url = self._get_api_context()
-        success_count = 0
-        skip_count = 0
-        fail_count = 0
-
-        for i, row_data in enumerate(response_data):
-            wd_type = str(row_data.get('wd_type', ''))
-            etime = row_data.get('etime', '')
-            stime = row_data.get('stime', '')
-            dxmc = row_data.get('dxmc', '')
-
-            # 判断是否需要修改（逻辑与原UI操作完全一致）
-            need_modify = False
-            update_field = None
-            update_value = None
-
-            if wd_type == "0" and etime == "3000-01-01":
-                # 同类型 + 停用时间为3000-01-01 → 修改开始时间
-                if stime <= modify_time:
-                    logger.debug(f"第{i + 1}条: stime({stime}) <= modify_time({modify_time}), 无需修改")
-                    skip_count += 1
-                    continue
-                update_field = 'stime'
-                update_value = modify_time
-                need_modify = True
-            elif wd_type == "0" and etime != "3000-01-01":
-                # 同类型 + 停用时间非3000-01-01 → 修改结束时间
-                update_field = 'etime'
-                update_value = modify_time
-                need_modify = True
-            elif wd_type == "1" and etime == "3000-01-01":
-                # 不同类型 + 停用时间为3000-01-01 → 修改开始时间
-                if stime <= modify_time:
-                    logger.debug(f"第{i + 1}条: stime({stime}) <= modify_time({modify_time}), 无需修改")
-                    skip_count += 1
-                    continue
-                update_field = 'stime'
-                update_value = modify_time
-                need_modify = True
-            else:
-                skip_count += 1
-                continue
-
-            if not need_modify:
-                continue
-
-            old_value = stime if update_field == 'stime' else etime
-            logger.info(f"API修改第{i + 1}条: dxmc={dxmc}, wd_type={wd_type}, "
-                        f"将{update_field}从{old_value}修改为{update_value}")
-
-            try:
-                # api_url = f"{base_url}/fmp-acc-account/member/gris/mapp/account/service/accDimValRel/modifyTime"
-
-                # 构建保存接口入参（字段名与前端一致：camelCase）
-                # 原始入参格式：
-                # {"objectTypeId":"2021","objectItemId":322545648,"dimensionId":20103691,
-                #  "dimension":"1156","dimensionType":1,"startTime":"2025-12-01","endTime":"2026-05-26",
-                #  "beforeStartTime":"2025-12-01","beforeEndTime":"2026-05-25","confirm":false}
-
-                # 从response_data取原始值（listDimValRel返回的字段可能是下划线风格或camelCase）
-                # payload = {
-                #     'objectTypeId': row_data.get('dxlxid'),
-                #     'objectItemId': row_data.get('dxid'),
-                #     'dimensionId': row_data.get('wdid'),
-                #     'dimension': row_data.get('wdlx'),
-                #     'dimensionType': int(wd_type),
-                #     'confirm': False,
-                # }
-
-                # 根据修改类型设置时间字段
-                # if update_field == 'stime':
-                #     payload['startTime'] = modify_time
-                #     payload['endTime'] = etime
-                #     payload['beforeStartTime'] = stime
-                #     payload['beforeEndTime'] = etime
-                # elif update_field == 'etime':
-                #     payload['startTime'] = stime
-                #     payload['endTime'] = modify_time
-                #     payload['beforeStartTime'] = stime
-                #     payload['beforeEndTime'] = etime
-
-                # resp = session.post(api_url, json=payload)
-
-                # if resp.status_code == 200:
-                #     try:
-                #         resp_json = resp.json()
-                #         # 接口返回 {"code":"6100000","data":["2"],"message":"success"}
-                #         # 成功条件：code为 "6100000" 或 "000000"
-                #         if resp_json.get('code') in ('6100000', '000000'):
-                #             success_count += 1
-                #             logger.info(f"第{i + 1}条API修改成功, 返回code={resp_json.get('code')}")
-                #         else:
-                #             fail_count += 1
-                #             logger.error(f"第{i + 1}条API修改失败: code={resp_json.get('code')}, {resp.text[:300]}")
-                #     except ValueError:
-                #         success_count += 1
-                #         logger.info(f"第{i + 1}条API调用完成(HTTP 200, 非JSON响应)")
-                # else:
-                #     fail_count += 1
-                #     logger.error(f"第{i + 1}条API调用失败: HTTP {resp.status_code}, {resp.text[:300]}")
-                modify_params = {
-                    'objectTypeId': row_data.get('dxlxid'),
-                    'objectItemId': row_data.get('dxid'),
-                    'dimensionId': row_data.get('wdid'),
-                    'dimension': row_data.get('wdlx'),
-                    'dimensionType': int(wd_type),
-                    'confirm': False,
-                }
-                if update_field == 'stime':
-                    modify_params['startTime'] = modify_time
-                    modify_params['endTime'] = etime
-                    modify_params['beforeStartTime'] = stime
-                    modify_params['beforeEndTime'] = etime
-                elif update_field == 'etime':
-                    modify_params['startTime'] = stime
-                    modify_params['endTime'] = modify_time
-                    modify_params['beforeStartTime'] = stime
-                    modify_params['beforeEndTime'] = etime
-
-                result = self._js_modify_time(modify_params)
-                if result == ['2']:
-                    success_count += 1
-                    logger.info(f"第{i + 1}条JS修改成功, result={result}")
-                else:
-                    fail_count += 1
-                    logger.error(f"第{i + 1}条JS修改失败: result={result}")
-            except Exception as e:
-                fail_count += 1
-                logger.error(f"第{i + 1}条JS调用异常: {str(e)}")
-
-        logger.info(f"API修改完成: 成功={success_count}, 跳过={skip_count}, 失败={fail_count}")
-        return success_count > 0
 
     def add_vouch_task(self, task_info: list):
         try:

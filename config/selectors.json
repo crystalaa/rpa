@@ -792,6 +792,29 @@
                 "value": "确定"
             }
         }
-    }
+    },
+    "西电配比支付": {
+      "登录页面": {
+          "用户名输入框": "input.el-input__inner[placeholder='请输入账号']",
+          "密码输入框": "input.el-input__inner[placeholder='请输入密码']",
+          "登录单位": "span.unit-input-con.login-form.is-none font.unit-name[title='请选择单位']",
+          "登录按钮": "button:has-text('登录')"
+      },
+      "切换单位页面": {
+          "下拉框": "div[class~='dcc-header-unitree']",
+          "选择单位": "p[class='sub-item-one']:has-text('1500')"
+      },
+      "查询条件": {
+        "开始时间输入框": "#stime",
+        "结束时间输入框": "#etime",
+        "业务类型下拉": "#ywlx",
+        "支付方式下拉": "#zyzffssel"
+      },
+      "配比页面": {
+        "更多链接": "td:has-text('更多') >> a",
+        "查询按钮": "#queryBtn",
+        "配比支付按钮": "#pbzfBtn"
+      }
 
+    }
 }
